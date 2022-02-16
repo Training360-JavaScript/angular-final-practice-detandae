@@ -1,0 +1,73 @@
+<div *ngIf="event">
+<form #eventForm="ngForm" (ngSubmit)="onUpdate(eventForm)">
+    <!-- // {"id":1,"name":"Datesee","price":82,"category":"Electronic"} -->
+    <div class="form-group">
+      <label for="event-name">Name</label>
+      <input
+        [(ngModel)]="event.name"
+        pattern=".{8,}"
+        required
+        id="event-name"
+        type="text"
+        class="form-control"
+        name="name">
+        <div
+        [hidden]="eventForm.controls['name']?.valid"
+        class="error-message">
+        The name is required and must be contain minimum 8 characters.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="event-date">Date</label>
+      <input
+        [(ngModel)]="event.date"
+        required
+        min="1"
+        id="event-date"
+        type="text"
+        class="form-control"
+        name="date">
+        <div
+        [hidden]="eventForm.controls['date']?.valid"
+          class="error-message">
+          The date is not good.
+        </div>
+    </div>
+    <div class="form-group">
+      <label for="event-time">Time</label>
+      <input
+      [(ngModel)]="event.time"
+      required
+      min="1"
+      id="event-time"
+      type="text"
+      class="form-control"
+      name="time">
+      <div
+      [hidden]="eventForm.controls['time']?.valid"
+        class="error-message">
+        The time is not good.
+      </div>
+    </div>
+    <div class="form-group">
+        <label for="event-location">location</label>
+        <input
+          [(ngModel)]="event.location"
+          required
+          min="1"
+          id="event-date"
+          type="text"
+          class="form-control"
+          name="location">
+          <div
+          [hidden]="eventForm.controls['location']?.valid"
+            class="error-message">
+            The location is not good.
+          </div>
+      </div>
+
+    <button [disabled]="eventForm.invalid" class="btn btn-primary btn-block">
+      <i class="fa fa-save"></i> Update
+    </button>
+  </form>
+</div>
